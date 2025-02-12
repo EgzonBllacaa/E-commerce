@@ -28,7 +28,6 @@
   align-items: center;
   width: 100%;
   height: 38px;
-  margin-bottom: 24px;
   background-color: var(--clr-black);
   color: var(--clr-white);
 }
@@ -54,10 +53,13 @@
   margin-left: 10px;
 }
 .header-wrapper {
+  padding-top: 20px;
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   gap: 40px;
+  row-gap: 10px;
   margin-bottom: 24px;
 }
 .icon a {
@@ -115,6 +117,7 @@
 }
 
 .search {
+  width: min(570px, 100%);
   position: relative;
 }
 .search svg {
@@ -132,13 +135,14 @@
   outline: none;
 }
 .search input {
-  top: 0;
-  left: 0;
   border: none;
   padding: 10px;
   padding-left: 52px;
   background-color: #f0f0f0;
-  width: 577px;
+  min-width: 260px;
+  max-width: 570px;
+  width: 100%;
+  /* width: min(100%, 570px); */
   height: 48px;
   border-radius: 40px;
 }
@@ -157,13 +161,22 @@ main {
 }
 .hero-section {
   display: flex;
+  flex-wrap: wrap;
   width: 100%;
   justify-content: center;
   align-items: center;
+  gap: 20px;
+  overflow: hidden;
 }
 .hero-text {
-  width: 50%;
+  flex: 1 1 500px;
+  max-width: 90%;
+  margin-top: 20px;
   align-items: center;
+}
+.hero-text:nth-child(n + 2) {
+  margin-top: 20px;
+  margin-left: 20px;
 }
 .hero-text h1 {
   font-size: 64px;
@@ -240,12 +253,18 @@ main {
 }
 .hero-img {
   position: relative;
-  width: 50%;
+  flex: 1 1 500px;
+  max-width: 50%;
 }
 .hero-img img {
   display: block;
   width: 100%;
+  min-width: 450px;
   height: auto;
+  overflow: hidden;
+}
+.icons {
+  overflow: hidden;
 }
 .icons img {
   position: absolute;
@@ -253,14 +272,17 @@ main {
   left: 30px;
   z-index: 2;
   width: 56px;
+  min-width: unset;
   height: auto;
+  overflow: hidden;
 }
 .icons img:last-child {
   position: absolute;
   top: 80px;
-  left: 540px;
+  left: 490px;
   width: 104px;
   height: auto;
+  overflow: hidden;
 }
 .brands-wrapper {
   position: relative;
@@ -277,7 +299,6 @@ main {
   background-color: var(--clr-black);
   padding-top: 40px;
   padding-bottom: 70px;
-  margin-bottom: 72px;
 }
 @keyframes scrollLeft {
   to {
@@ -310,6 +331,9 @@ main {
   width: 100%;
   background-color: #000000;
 }
+.items:first-child {
+  margin-top: 70px;
+}
 .items h2 {
   font-size: 48px;
   font-family: "Montserrat";
@@ -321,6 +345,7 @@ main {
 .card-wrapper {
   width: 100%;
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
   gap: 20px;
   transition: all 0.3s ease-in-out;
@@ -437,11 +462,20 @@ main {
 .browse-box img {
   border-radius: 20px;
   cursor: pointer;
+  width: 100%;
 }
 
 .browse-box h3 {
   font-size: 36px;
   font-weight: bold;
+}
+.browse-box:nth-child(1),
+.browse-box:nth-child(2),
+.browse-box:nth-child(3),
+.browse-box:nth-child(4) {
+  position: relative;
+  max-width: 500px;
+  width: 100%;
 }
 .browse-box:nth-child(1) h3 {
   position: absolute;
@@ -451,17 +485,17 @@ main {
 .browse-box:nth-child(2) h3 {
   position: absolute;
   top: 20px;
-  left: 470px;
+  left: 40px;
 }
 .browse-box:nth-child(3) h3 {
   position: absolute;
-  top: 330px;
+  top: 20px;
   left: 40px;
 }
 .browse-box:nth-child(4) h3 {
   position: absolute;
-  top: 330px;
-  left: 690px;
+  top: 20px;
+  left: 40px;
 }
 .swiper-button-wrapper {
   position: absolute;
@@ -504,6 +538,10 @@ main {
 .swiper-button-next svg {
   width: 32px;
   height: auto;
+}
+.prev-btn path:active,
+.next-btn path:active {
+  fill: var(--clr-yellow);
 }
 .testimonials h2 {
   font-family: "Montserrat";
@@ -550,19 +588,13 @@ main {
   line-height: 22px;
 }
 .newsletter {
-  position: absolute;
-  top: -20%;
-  left: 17%;
-  z-index: 1444;
-
-  z-index: 14;
+  max-width: 1240px;
+  width: 100%;
   background-color: #000000;
   color: var(--clr-white);
   border-radius: 20px;
-  margin-bottom: 55px;
   margin: 0 auto;
-  max-width: 1240px;
-  width: 100%;
+  margin-bottom: 55px;
 }
 .newsletter-wrapper {
   padding: 36px 64px;
@@ -590,16 +622,20 @@ main {
   width: 349px;
 }
 .email-input .email {
-  padding: 18px 12px 18px 50px;
+  padding: 18px 50px;
   border-radius: 62px;
-  border: none;
+  border: 2px solid transparent;
+  transition: border 0.9s ease-in-out;
+}
+.email-input .email.show {
+  border: 2px solid red;
 }
 .email-input {
   position: relative;
 }
 .email-input svg {
   position: absolute;
-  top: 26px;
+  top: 29px;
   left: 16px;
   transform: translateY(-50%);
 }
@@ -609,6 +645,7 @@ main {
   font-size: 16px;
 }
 .email-input .submit {
+  cursor: pointer;
   font-weight: 500;
   font-size: 16px;
   padding: 16px 12px;
@@ -617,21 +654,19 @@ main {
   border: none;
   border-radius: 62px;
 }
-.email-input .email:focus {
-  padding-left: 38px;
-  outline: none;
+.email-input .submit:hover {
+  background-color: rgb(224, 224, 224);
 }
-.email-input .email:focus::placeholder {
-  color: transparent;
+.email-input .email:focus {
+  padding-left: 50px;
+  outline: none;
 }
 footer {
   background-color: #f0f0f0;
-  position: relative;
 }
 .footer-wrapper {
   display: flex;
   justify-content: space-between;
-  padding-top: 150px;
   padding-bottom: 50px;
   margin-bottom: 25px;
   border-bottom: 1px solid hsla(0, 0%, 0%, 0.1);
@@ -729,13 +764,20 @@ footer {
   .hero-section {
     flex-direction: column;
     padding-top: 40px;
-    width: 100%;
+  }
+  .hero-text,
+  .hero-img {
+    max-width: 100%;
   }
   .hero-text h1 {
     font-size: 36px;
     line-height: 34px;
     font-weight: bold;
     margin-bottom: 20px;
+  }
+
+  .hero-text {
+    margin: 0;
   }
   .stats-wrapper {
     flex-wrap: wrap;
@@ -747,10 +789,6 @@ footer {
   }
   .stats:first-of-type {
     padding: 0 32px;
-  }
-  .hero-text,
-  .hero-img {
-    width: 100%;
   }
   .hero-img img {
     height: 100%;
@@ -832,7 +870,7 @@ footer {
   }
   .swiper-wrapper {
     width: 100%;
-    margin-bottom: 260px;
+    margin-bottom: 20px;
   }
   .testimonials-box {
     width: 100%;
@@ -841,11 +879,12 @@ footer {
     left: 5%;
     top: -20%;
     width: 90%;
-    margin-bottom: 400px;
+    margin-bottom: 55px;
   }
   .newsletter-wrapper {
     flex-wrap: wrap;
     gap: 32px;
+    padding: 32px 24px;
   }
   .newsletter h2 {
     width: 100%;
@@ -854,7 +893,6 @@ footer {
     width: 100%;
   }
   .footer-wrapper {
-    padding-top: 210px;
     flex-wrap: wrap;
   }
   .footer-box:nth-child(1) {

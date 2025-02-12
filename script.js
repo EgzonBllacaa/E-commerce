@@ -1,19 +1,29 @@
+// remove banner
+
+const exit = document.getElementById("exit");
+
+exit.addEventListener("click", () => {
+  const banner = document.querySelector(".banner");
+  banner.style.display = "none";
+});
+
 // Show more or less btn
 
 const btnView = document.querySelectorAll(".btn-view");
 const btnShowLess = document.querySelectorAll(".btn-show-less");
 
 btnView.forEach((button, index) => {
-  let currentView = 4; // Keep a separate `currentView` for each container
+  let currentView = 4;
 
+  const itemsContainer = button.closest(".items");
+  let boxes = [
+    ...itemsContainer.querySelectorAll(".container .items .card-wrapper .card"),
+  ];
+
+  boxes.forEach((box, i) => {
+    box.style.display = i < 4 ? "inline-block" : "none";
+  });
   button.addEventListener("click", () => {
-    const itemsContainer = button.closest(".items");
-    let boxes = [
-      ...itemsContainer.querySelectorAll(
-        ".container .items .card-wrapper .card"
-      ),
-    ];
-
     // Show the next 4 boxes
     for (let i = currentView; i < currentView + 4 && i < boxes.length; i++) {
       boxes[i].style.display = "inline-block";
@@ -30,14 +40,6 @@ btnView.forEach((button, index) => {
   btnShowLess[index].style.display = "none";
 
   btnShowLess[index].addEventListener("click", () => {
-    const itemsContainer = button.closest(".items");
-    let boxes = [
-      ...itemsContainer.querySelectorAll(
-        ".container .items .card-wrapper .card"
-      ),
-    ];
-
-    // Reset to show only the first 4 boxes
     boxes.forEach((box, i) => {
       box.style.display = i < 4 ? "inline-block" : "none";
     });
@@ -108,22 +110,26 @@ const swiper = new Swiper(".swiper", {
   },
 });
 // Email Validation
+
 const email = document.querySelector(".email");
 const error = document.querySelector(".error");
 const submit = document.querySelector(".submit");
 
 const errorHandler = () => {
   error.classList.add("show");
-  error.textContent = "There has been an error with email";
+  email.classList.add("show");
+  error.textContent = "Your email is not valid";
 };
 const successHandler = () => {
   error.classList.remove("show");
   error.textContent = "";
+  // Show modal not alert it looks more proffesional
   alert("Email is verified");
+  email.value = "";
 };
 
 const emailValidation = () => {
-  const emailValue = email.value.trim();
+  let emailValue = email.value.trim();
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   if (!emailRegex.test(emailValue)) {
