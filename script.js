@@ -7,6 +7,46 @@ exit.addEventListener("click", () => {
   banner.style.display = "none";
 });
 
+// Api fake Store
+const search = document.getElementById("search");
+
+search.addEventListener("input", async () => {
+  console.log(2);
+  const query = search.value;
+  if (query.length > 2) {
+    try {
+      const response = await fetch(`https://fakestoreapi.in/api/products`);
+      const data = await response.json();
+      console.log(data);
+      setTimeout(() => {
+        displayProducts(data.products.slice(0, 4));
+      }, 1500);
+    } catch (error) {
+      console.error("Error fetching data: ", error);
+    }
+  }
+});
+
+function displayProducts(products) {
+  const resultsContainer = document.getElementById("results");
+  resultsContainer.innerHTML = "";
+
+  if (products.length == 0) {
+    resultsContainer.innerHTML = `<p>No products found</p>`;
+  }
+  products.forEach((product) => {
+    const productElement = document.createElement("div");
+    productElement.classList.add("product");
+
+    productElement.innerHTML = `
+    <h3>${product.title}</h3>
+    <p>$${product.price}</p>
+    <a href="${product.url} target="_blank"">View Product</a>
+    `;
+    resultsContainer.appendChild(productElement);
+  });
+}
+
 // Show more or less btn
 
 const btnView = document.querySelectorAll(".btn-view");

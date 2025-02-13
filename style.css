@@ -146,6 +146,33 @@
   height: 48px;
   border-radius: 40px;
 }
+.product {
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  border-bottom: 1px solid var(--clr-gray);
+  cursor: pointer;
+  padding: 10px;
+}
+.product:hover {
+  background-color: rgb(240, 240, 240);
+}
+.product h3 {
+  display: inline-block;
+  font-size: 18px;
+}
+.product p {
+  margin: 5px 0;
+  color: var(--clr-yellow);
+}
+.product a {
+  text-decoration: none;
+  color: var(--clr-black);
+}
 
 .cart-login {
   display: flex;
@@ -464,7 +491,12 @@ main {
   cursor: pointer;
   width: 100%;
 }
-
+.browse-top,
+.browse-bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
 .browse-box h3 {
   font-size: 36px;
   font-weight: bold;
