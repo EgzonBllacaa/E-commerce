@@ -164,9 +164,26 @@ const successHandler = () => {
   error.classList.remove("show");
   error.textContent = "";
   // Show modal not alert it looks more proffesional
-  alert("Email is verified");
+  const modal = document.querySelector(".modal");
+  modal.style.display = "flex";
+  document.body.style.overflow = "hidden";
+  modal.innerHTML = `<p>Your email ${email.value} has been sent successfully.</p> <img class="close" src="assets/images/icons/close.png" alt="">`;
+  setTimeout(() => {
+    const closeBtn = document.querySelector(".modal .close");
+    if (closeBtn) {
+      closeBtn.addEventListener("click", () => {
+        modal.style.display = "none"; // Properly hide modal
+        document.body.style.overflow = "scroll";
+        console.log("Modal closed");
+      });
+    } else {
+      console.log("Close button not found");
+    }
+  }, 100);
   email.value = "";
 };
+
+// modal
 
 const emailValidation = () => {
   let emailValue = email.value.trim();

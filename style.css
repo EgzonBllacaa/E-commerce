@@ -647,6 +647,35 @@ main {
 .error.show {
   display: block;
 }
+
+.modal {
+  display: none;
+  background-color: rgb(136, 233, 106);
+  border: 1px solid black;
+  border-radius: 10px;
+  color: black;
+  padding: 20px;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  margin: 0 auto;
+  width: 500px;
+  height: 300px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10000;
+}
+.modal img {
+  display: block;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
 .email-input {
   display: flex;
   flex-direction: column;
