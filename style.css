@@ -22,6 +22,7 @@
   max-width: 1240px;
   width: 100%;
   margin: 0 auto;
+  padding: 0 15px;
 }
 .banner {
   display: flex;
@@ -56,11 +57,14 @@
   padding-top: 20px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
   align-items: center;
   gap: 40px;
   row-gap: 10px;
   margin-bottom: 24px;
+}
+.header-wrapper.detailed_page {
+  padding-bottom: 24px;
+  border-bottom: 1px solid hsla(0, 0%, 0%, 0.1);
 }
 .icon a {
   text-transform: uppercase;
@@ -117,7 +121,7 @@
 }
 
 .search {
-  width: min(570px, 100%);
+  width: min(550px, 100%);
   position: relative;
 }
 .search svg {
@@ -148,6 +152,7 @@
 }
 .product {
   z-index: 20;
+  position: block;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;

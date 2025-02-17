@@ -1,7 +1,5 @@
-// remove banner
-
+// Remove banner
 const exit = document.getElementById("exit");
-
 exit.addEventListener("click", () => {
   const banner = document.querySelector(".banner");
   banner.style.display = "none";
@@ -9,7 +7,6 @@ exit.addEventListener("click", () => {
 
 // Api fake Store
 const search = document.getElementById("search");
-
 search.addEventListener("input", async () => {
   console.log(2);
   const query = search.value;
@@ -48,7 +45,6 @@ function displayProducts(products) {
 }
 
 // Show more or less btn
-
 const btnView = document.querySelectorAll(".btn-view");
 const btnShowLess = document.querySelectorAll(".btn-show-less");
 
@@ -64,16 +60,14 @@ btnView.forEach((button, index) => {
     box.style.display = i < 4 ? "inline-block" : "none";
   });
   button.addEventListener("click", () => {
-    // Show the next 4 boxes
     for (let i = currentView; i < currentView + 4 && i < boxes.length; i++) {
       boxes[i].style.display = "inline-block";
     }
     currentView += 4;
 
-    // If all boxes are visible, toggle buttons
     if (currentView >= boxes.length) {
-      button.style.display = "none"; // Hide "Show More"
-      btnShowLess[index].style.display = "inline-block"; // Show "Show Less"
+      button.style.display = "none";
+      btnShowLess[index].style.display = "inline-block";
     }
   });
 
@@ -83,15 +77,14 @@ btnView.forEach((button, index) => {
     boxes.forEach((box, i) => {
       box.style.display = i < 4 ? "inline-block" : "none";
     });
-    currentView = 4; // Reset currentView
+    currentView = 4;
 
-    button.style.display = "inline-block"; // Show "Show More"
-    btnShowLess[index].style.display = "none"; // Hide "Show Less"
+    button.style.display = "inline-block";
+    btnShowLess[index].style.display = "none";
   });
 });
 
 // Text Animation
-
 function isElementInViewPort(el) {
   const rect = el.getBoundingClientRect();
   return (
@@ -111,18 +104,9 @@ window.addEventListener("scroll", () => {
     }
   });
 });
-// setTimeout(() => {
-//   const texts = document.querySelectorAll(".text");
-//   texts.forEach((text, index) => {
-//     setTimeout(() => {
-//       text.classList.add("animate");
-//     }, index * 1000);
-//   });
-// }, 1000);
 
-// SwiperJs
+// SwiperJs for the slider
 const swiper = new Swiper(".swiper", {
-  // Swiper configuration
   loop: true,
   navigation: {
     nextEl: ".swiper-button-next",
@@ -149,21 +133,23 @@ const swiper = new Swiper(".swiper", {
     },
   },
 });
-// Email Validation
 
+// Email Validation
 const email = document.querySelector(".email");
 const error = document.querySelector(".error");
 const submit = document.querySelector(".submit");
 
+// Error Handler
 const errorHandler = () => {
   error.classList.add("show");
   email.classList.add("show");
   error.textContent = "Your email is not valid";
 };
+// Success Handler
 const successHandler = () => {
   error.classList.remove("show");
   error.textContent = "";
-  // Show modal not alert it looks more proffesional
+  // Modal Success
   const modal = document.querySelector(".modal");
   modal.style.display = "flex";
   document.body.style.overflow = "hidden";
@@ -172,7 +158,7 @@ const successHandler = () => {
     const closeBtn = document.querySelector(".modal .close");
     if (closeBtn) {
       closeBtn.addEventListener("click", () => {
-        modal.style.display = "none"; // Properly hide modal
+        modal.style.display = "none";
         document.body.style.overflow = "scroll";
         console.log("Modal closed");
       });
@@ -183,8 +169,7 @@ const successHandler = () => {
   email.value = "";
 };
 
-// modal
-
+// Validation
 const emailValidation = () => {
   let emailValue = email.value.trim();
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
