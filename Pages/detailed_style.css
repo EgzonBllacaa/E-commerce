@@ -11,7 +11,9 @@
   --clr-red-light: #ff33331a;
   --clr-black-gray: #00000066;
 }
-
+* {
+  box-sizing: border-box;
+}
 main {
   background-color: white;
   border: none;
@@ -21,6 +23,7 @@ main {
   width: 100%;
   align-items: center;
   gap: 40px;
+  margin-bottom: 80px;
 }
 .directory {
   display: flex;
@@ -153,4 +156,97 @@ main {
   width: 70%;
   cursor: pointer;
   font-weight: 500;
+}
+.more-detail-wrapper {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 180px;
+  border-bottom: 1px solid rgb(223 223 223);
+  margin-bottom: 36px;
+}
+.more-detail-wrapper h3 {
+  font-size: 20px;
+  line-height: 22px;
+  margin-bottom: 24px;
+  color: hsla(0, 0%, 0%, 0.6);
+}
+.ratings_reviews.active {
+  border-bottom: 2px solid var(--clr-black);
+}
+.ratings_reviews.active h3 {
+  color: black;
+}
+.all-reviews-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+.reviews-size {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.reviews-size h4 {
+  font-size: 24px;
+  font-weight: bold;
+}
+.reviews-size span {
+  color: hsla(0, 0%, 0%, 0.6);
+  line-height: 22px;
+}
+.write-review {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.write-review .filter-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  background-color: #f0f0f0;
+  border-radius: 62px;
+  min-width: 48px;
+}
+.filter {
+  display: flex;
+  align-items: center;
+  padding: 16px 20px;
+  background-color: #f0f0f0;
+  border-radius: 62px;
+  gap: 10px;
+  font-weight: 600;
+  min-width: 120px;
+}
+.write-review button {
+  padding: 16px 20px;
+  background-color: var(--clr-black);
+  color: var(--clr-white);
+  font-weight: 600;
+  border-radius: 62px;
+  border: none;
+  min-width: 166px;
+}
+.cards-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  width: 100%;
+  margin-bottom: 36px;
+}
+.cards .testimonials-box {
+  width: calc(50% - 10px);
+}
+.load-more-reviews button {
+  padding: 16px 54px;
+  background-color: white;
+  border-radius: 62px;
+  border: 1px solid lightgray;
+  font-weight: 600;
 }
