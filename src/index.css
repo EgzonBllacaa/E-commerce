@@ -1,0 +1,15 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Poppins";
+  --color-accent: #38cb89;
+  --color-absolute_white: #ffffff;
+  --color-light-gray: #f3f5f7;
+  --color-cream-gray: #e2e4e3;
+  --color-neutral_07-100: #141718;
+  --color-neutral_07-95: #141718;
+  --color-neutral_07-50: #141718;
+  --color-neutral_01-100: #fefefe;
+  --color-neutral_03-100: #e8ecef;
+  --color-neutral_04-100: #6c7275;
+}
