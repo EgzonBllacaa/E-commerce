@@ -8,7 +8,7 @@ import location from "../../assets/location_icon.png";
 const ContactUsCards = () => {
   return (
     <Layout className="flex flex-col items-center mb-10">
-      <div className="flex gap-6 w-full">
+      <div className="flex gap-6 w-full flex-wrap">
         <ShippingCard
           className="w-full items-center text-center"
           classNameTitle="text-zinc-500 font-bold"

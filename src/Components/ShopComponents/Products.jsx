@@ -67,8 +67,8 @@ const Products = () => {
   if (isError) return <p>{error}</p>;
   return (
     <Layout className="pt-16 pb-24">
-      <div className="flex flex-wrap gap-6">
-        <div className="mx-auto w-full sm:min-w-1/4">
+      <div className="flex flex-col md:flex-row gap-6">
+        <div className="mx-auto w-full md:max-w-1/4">
           <FilterSection
             CATEGORIES={CATEGORIES}
             selectedCategories={selectedCategories}

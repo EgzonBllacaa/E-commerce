@@ -6,7 +6,7 @@ import Search from "../../assets/Search.png";
 import { Link } from "react-router-dom";
 import Layout from "./Layout.jsx";
 import { useQuery } from "@tanstack/react-query";
-import UseFetch from "./UseFetch.js";
+import UseFetch from "./UseFetch.jsx";
 import { useCartStore } from "../stores/UseCartStore.js";
 import SlideCart from "./SlideCart.jsx";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -152,49 +152,56 @@ const Navbar = () => {
             <Link to={"/contact-us"}>Contact Us</Link>
           </li>
         </ul>
-        <div className="flex items-center relative gap-4 xl:justify-self-end">
-          <img
-            onClick={() => setShowCart((prev) => !prev)}
-            className="min-w-5  cursor-pointer"
-            src={Cart}
-            alt=""
-          />
-          {showCart && cart.length > 0 && (
-            <div className="absolute bg-white flex flex-col justify-between overflow-y-auto top-10 right-0 px-4 z-30">
-              <div className="flex overflow-x-hidden justify-between items-center">
-                <p className="text-zinc-500">{totalProducts} products</p>
-                <button
-                  className="text-orange-600 cursor-pointer font-medium"
-                  onClick={resetCart}
-                >
-                  Delete all
-                </button>
+        <div className="flex items-center relative sm:gap-2  xl:justify-self-end">
+          <div className="flex gap-4">
+            <img
+              onClick={() => setShowCart((prev) => !prev)}
+              className="min-w-5  cursor-pointer"
+              src={Cart}
+              alt=""
+            />
+            {showCart && cart.length > 0 && (
+              <div className="absolute bg-white flex flex-col justify-between overflow-y-auto top-10 right-0 px-4 z-30">
+                <div className="flex overflow-x-hidden justify-between items-center">
+                  <p className="text-zinc-500">{totalProducts} products</p>
+                  <button
+                    className="text-orange-600 cursor-pointer font-medium"
+                    onClick={resetCart}
+                  >
+                    Delete all
+                  </button>
+                </div>
+                <div className="h-[250px] w-[320px] overflow-y-auto">
+                  {cart.map((product) => (
+                    <SlideCart
+                      product={product}
+                      addToCart={addToCart}
+                      removeFromCart={removeFromCart}
+                      removeProduct={removeProduct}
+                      totalProducts={totalProducts}
+                      resetCart={resetCart}
+                    />
+                  ))}
+                </div>
+                <Link className="bg-white w-full py-2 " to={"/cart"}>
+                  <button
+                    onClick={() => setShowCart(false)}
+                    className="bg-amber-600 text-white w-full cursor-pointer hover:bg-amber-700 rounded-2xl font-medium py-3 "
+                  >
+                    Go to the Cart ${totalPrice.toFixed(2)}
+                  </button>
+                </Link>
               </div>
-              <div className="h-[250px] overflow-y-auto">
-                {cart.map((product) => (
-                  <SlideCart
-                    product={product}
-                    addToCart={addToCart}
-                    removeFromCart={removeFromCart}
-                    removeProduct={removeProduct}
-                    totalProducts={totalProducts}
-                    resetCart={resetCart}
-                  />
-                ))}
-              </div>
-              <Link className="bg-white w-full py-2 " to={"/cart"}>
-                <button
-                  onClick={() => setShowCart(false)}
-                  className="bg-amber-600 text-white w-full cursor-pointer hover:bg-amber-700 rounded-2xl font-medium py-3 "
-                >
-                  Go to the Cart ${totalPrice.toFixed(2)}
-                </button>
-              </Link>
-            </div>
-          )}
-          <span className="bg-black text-white px-2  rounded-xl">
-            {totalProducts}
-          </span>
+            )}
+            {totalProducts >= 1 && (
+              <span
+                onClick={() => setShowCart((prev) => !prev)}
+                className="bg-black text-white px-2 cursor-pointer  rounded-xl"
+              >
+                {totalProducts}
+              </span>
+            )}
+          </div>
           <div className="relative">
             {showSearch && (
               <input
@@ -219,7 +226,7 @@ const Navbar = () => {
                           alt=""
                         />
                         <div>
-                          <p className=" py-2">{product.title}</p>
+                          <p className="py-2">{product.title}</p>
                           <p className="hover:text-green-300">
                             ${product.price}
                           </p>

@@ -8,7 +8,7 @@ const CartSection = ({ cart, discount }) => {
   return (
     <div className="flex flex-col items-center">
       <h1 className="text-bold text-6xl mb-10">Cart</h1>
-      <div className="w-full flex flex-wrap gap-16 ">
+      <div className="w-full flex flex-wrap items-start gap-16 ">
         <CartProducts
           cart={cart}
           removeProduct={removeProduct}

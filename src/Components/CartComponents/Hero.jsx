@@ -7,7 +7,7 @@ const Hero = () => {
   const cart = useCartStore((state) => state.cart);
   const [discount, setDiscount] = useState(null);
   return (
-    <div className="py-20">
+    <div className="py-20 flex flex-col gap-10">
       <CartSection discount={discount} cart={cart} />
       <CouponCode onApplyCoupon={setDiscount} cart={cart} />
     </div>

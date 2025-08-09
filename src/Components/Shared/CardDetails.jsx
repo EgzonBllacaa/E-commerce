@@ -10,12 +10,12 @@ const CardDetails = ({ product }) => {
   return (
     <div
       key={product.id}
-      className="flex flex-col gap-3 w-full  sm:max-w-[200px] lg:max-w-[300px] relative"
+      className="flex flex-col gap-3 w-full  lg:max-w-[330px] 2xl:max-w-[330px] relative"
     >
       <Link to={`/shop/${product.id}`}>
         <img
           src={product.images[0]}
-          className="relative w-full  max-w-110 bg-light-gray "
+          className="relative w-full   2xl:max-w-110 bg-light-gray "
           alt={product.title}
         />
       </Link>

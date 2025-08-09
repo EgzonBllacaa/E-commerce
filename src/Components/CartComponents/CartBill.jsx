@@ -23,7 +23,7 @@ const CartBill = ({ cart, couponCode }) => {
   const finalTotal = baseTotal + shippingFee - discountAmount;
 
   return (
-    <div className="w-[30%] min-w-[200px] border rounded-xl px-6 py-6">
+    <div className="xl:w-[30%] min-w-[200px]  w-full border rounded-xl px-6 py-6">
       <h4 className="font-bold text-lg">Cart Summary</h4>
       <div className="flex flex-col gap-4 pt-4 pb-8">
         <div className="flex flex-col gap-4">
@@ -86,7 +86,7 @@ const CartBill = ({ cart, couponCode }) => {
           </div>
         </div>
       </div>
-      <button className="bg-black text-white w-full text-lg py-2.5 rounded-lg py">
+      <button className="bg-black text-white cursor-pointer w-full text-lg py-2.5 rounded-lg py">
         Checkout
       </button>
     </div>

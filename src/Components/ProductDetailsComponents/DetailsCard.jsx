@@ -18,7 +18,7 @@ const DetailsCard = () => {
 
   console.log(formattedDiscount);
   return (
-    <div className="flex items-center w-full gap-4">
+    <div className="flex items-center w-full gap-4 flex-wrap">
       <div className="w-1/2 min-w-[300px]">
         <img className="w-auto" src={product?.images[0]} alt="" />
       </div>
@@ -30,7 +30,7 @@ const DetailsCard = () => {
               {product?.brand}
             </span>
             <h2 className="text-4xl font-medium">{product?.title}</h2>
-            <div className="flex items-center gap-4 text-sm">
+            <div className="flex items-center flex-wrap gap-4 text-sm">
               <span className="underline">Rate</span>
               <span>Warranty: 1 year</span>
               <span>Origin of brand: USA and Canada</span>

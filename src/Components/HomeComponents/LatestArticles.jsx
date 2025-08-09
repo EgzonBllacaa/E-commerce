@@ -18,14 +18,19 @@ const LatestArticles = ({ posts }) => {
               <div className="flex flex-col gap-6">
                 <Link to={`/articles/${item.id}`}>
                   <img
+                    className="md:max-w-[300px] xl:max-w-[460px]"
                     src={`https://picsum.photos/seed/${item.id}/600/400`}
                     alt=""
                   />
-                  <div className="flex gap-2 flex-col">
-                    <h3>{item.title}</h3>
-                    <ReadMore />
-                  </div>
                 </Link>
+                <div className="flex gap-2 flex-col">
+                  <h3 className="text-base xl:text-xl font-medium">
+                    {item.title}
+                  </h3>
+                  <Link to={`/articles/${item.id}`}>
+                    <ReadMore />
+                  </Link>
+                </div>
               </div>
             ))}
           </div>

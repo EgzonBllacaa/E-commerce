@@ -1,4 +1,7 @@
-import { faFilter } from "@fortawesome/free-solid-svg-icons";
+import {
+  faArrowDownShortWide,
+  faFilter,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 
@@ -30,7 +33,12 @@ const FilterSection = ({
         onClick={() => setShowFilter((prev) => !prev)}
         className="flex cursor-pointer gap-2 items-center"
       >
-        <FontAwesomeIcon icon={faFilter} />
+        {showFilter ? (
+          <FontAwesomeIcon icon={faFilter} />
+        ) : (
+          <FontAwesomeIcon icon={faArrowDownShortWide} />
+        )}
+
         <span>Filter</span>
       </button>
       {showFilter && (

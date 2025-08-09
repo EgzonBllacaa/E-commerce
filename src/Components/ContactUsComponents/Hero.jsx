@@ -7,8 +7,8 @@ const Hero = () => {
   return (
     <>
       <Layout>
-        <div className="pt-10 flex flex-col gap-6 max-w-4xl">
-          <h1 className="text-6xl font-medium leading-tight ">
+        <div className="md:pt-10 pt-4 flex flex-col gap-6 max-w-4xl">
+          <h1 className="md:text-6xl text-2xl font-medium  leading-tight ">
             We believe in sustainable decor. We’re passionate about life at
             home.
           </h1>
@@ -22,6 +22,12 @@ const Hero = () => {
         </div>
         <div className="py-12">
           <HurryUp
+            className={"xl:max-w-[560px] w-full object-cover"}
+            classNameParagraph={"sm:text-lg tex-sm"}
+            classNameAboutUs={
+              "sm:px-5 xl:items-start items-center xl:pl-20 px-5 xl:w-3xl bg-light-gray flex flex-col gap-6"
+            }
+            classNameText={"md:items-center"}
             img={contactUsImg}
             title={"About Us"}
             description={

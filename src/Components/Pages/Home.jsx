@@ -57,6 +57,7 @@ const Home = () => {
       <FullWidth>
         <HurryUp
           img={hurryUp}
+          limited={"Limited Edition"}
           title={"HURRY UP! 30% OFF"}
           callToAction={"Shop now"}
           description={"Find clubs that are right for your game"}

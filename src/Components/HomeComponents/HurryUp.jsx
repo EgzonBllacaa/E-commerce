@@ -7,7 +7,16 @@ import FullWidth from "../Shared/FullWidth";
 import Timer from "../Shared/Timer";
 import { Link } from "react-router-dom";
 
-const HurryUp = ({ img, title, description, timer = false }) => {
+const HurryUp = ({
+  img,
+  title,
+  description,
+  timer = false,
+  className,
+  classNameParagraph,
+  limited,
+  classNameText,
+}) => {
   const initialTime =
     10 * 24 * 60 * 60 * 1000 + 15 * 60 * 60 * 1000 + 40 * 60 * 1000 + 20 * 1000;
   const [timeLeft, setTimeLeft] = useState(initialTime);
@@ -36,13 +45,21 @@ const HurryUp = ({ img, title, description, timer = false }) => {
   const { days, hours, minutes, seconds } = formatTime(timeLeft);
   return (
     <FullWidth className={`bg-light-gray`}>
-      <div className="flex items-center flex-wrap">
-        <img src={img} className="w-4xl" alt="" />
-        <div className="sm:pl-20 px-5 py-40 bg-light-gray flex flex-col gap-6">
-          <div className="flex flex-col gap-4">
-            <span className="font-bold">Limited Edition</span>
+      <div className="flex justify-center 2xl:justify-start md:items-center  flex-wrap">
+        <img src={img} className={`max-w-3xl w-full ${className}`} alt="" />
+        <div
+          className={`2xl:pl-20 px-5 xl:w-3xl bg-light-gray py-5 xl:py-0 flex flex-col gap-6 ${classNameText}`}
+        >
+          <div
+            className={`flex flex-col xl:items-start gap-4  ${classNameText}`}
+          >
+            <span className="font-bold">{limited}</span>
             <h3 className="uppercase text-4xl font-medium">{title}</h3>
-            <p className="text-2xl">{description}</p>
+            <p
+              className={`text-2xl lg:text-center xl:text-left ${classNameParagraph}`}
+            >
+              {description}
+            </p>
           </div>
           {timer === true && (
             <div className="flex flex-col gap-3">

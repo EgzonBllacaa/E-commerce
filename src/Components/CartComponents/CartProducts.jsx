@@ -8,13 +8,13 @@ const CartProducts = ({
   cart,
 }) => {
   return (
-    <div className="w-[60%] min-w-[300px] ">
+    <div className="xl:w-[60%] w-full min-w-[300px] ">
       <div className="flex justify-between items-center text-lg font-bold border-b border-zinc-300 pb-6 ">
         <p>Product</p>
         <div className="flex gap-20 items-center">
-          <span>Quantity</span>
-          <span>Price</span>
-          <span>Total</span>
+          <span className="hidden lg:block">Quantity</span>
+          <span className="hidden lg:block">Price</span>
+          <span className="hidden lg:block">Total</span>
         </div>
       </div>
       {cart.map((product) => (
