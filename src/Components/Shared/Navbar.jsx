@@ -1,8 +1,8 @@
 import { useRef, useState } from "react";
 import Cart from "../../assets/Cart.png";
-import Search from "../../assets/Search.png";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import { faArrowDown } from "@fortawesome/free-solid-svg-icons";
+import Search from "../../assets/search.png";
 import { Link } from "react-router-dom";
 import Layout from "./Layout.jsx";
 import { useQuery } from "@tanstack/react-query";
