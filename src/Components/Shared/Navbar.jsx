@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import Cart from "../../assets/Cart.png";
-import Search from "../../assets/search.png";
+import Search from "../../assets/Search.png";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import { faArrowDown } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
