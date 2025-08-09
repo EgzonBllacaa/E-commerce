@@ -1,7 +1,7 @@
 import React from "react";
 import ShippingDetails from "../HomeComponents/ShippingDetails";
 import FullWidth from "../Shared/FullWidth";
-import Hero from "../ContactUsComponents/hero";
+import Hero from "../ContactUsComponents/Hero";
 import ContactUsSection from "../ContactUsComponents/ContactUsSection";
 
 const ContactUs = () => {
