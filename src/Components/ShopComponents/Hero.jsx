@@ -2,10 +2,11 @@ import Layout from "../Shared/Layout";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import shop_hero from "../../assets/shop_hero_products.jpg";
+import FullWidth from "../Shared/FullWidth";
 
 const Hero = () => {
   return (
-    <Layout>
+    <FullWidth>
       <div className="relative">
         <img
           className="w-full object-cover object-[center_55%]  max-h-[500px]"
@@ -27,7 +28,7 @@ const Hero = () => {
           </p>
         </div>
       </div>
-    </Layout>
+    </FullWidth>
   );
 };
 

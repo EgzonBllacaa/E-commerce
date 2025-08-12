@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const SlideCart = ({ product, removeFromCart, addToCart, removeProduct }) => {
   console.log(product);
   return (
-    <div className="flex flex-col justify-between border-b pb-1 border-zinc-300 w-full xl:w-md">
+    <div className="flex flex-col justify-between border-b pb-1 border-zinc-300 w-full sm:w-sm md:w-md">
       <div className="flex justify-between items-center ">
         <div className="flex flex-col gap-1 py-4">
           <div className="flex gap-2">

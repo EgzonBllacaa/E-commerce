@@ -24,31 +24,39 @@ const Footer = () => {
           </div>
           <ul className="flex flex-col sm:flex-row sm:flex-wrap sm:justify-between items-center gap-10">
             <li>
-              <Link className="text-neutral_01-100 text-sm">Home</Link>
+              <Link to={"/"} className="text-neutral_01-100 text-sm">
+                Home
+              </Link>
             </li>
             <li>
-              <Link className="text-neutral_01-100 text-sm">Shop</Link>
+              <Link to={"/shop"} className="text-neutral_01-100 text-sm">
+                Shop
+              </Link>
             </li>
             <li>
-              <Link className="text-neutral_01-100 text-sm">Product</Link>
+              <Link to={"/articles"} className="text-neutral_01-100 text-sm">
+                Blog
+              </Link>
             </li>
             <li>
-              <Link className="text-neutral_01-100 text-sm">Blog</Link>
-            </li>
-            <li>
-              <Link className="text-neutral_01-100 text-sm">Contact Us</Link>
+              <Link to={"/contact-us"} className="text-neutral_01-100 text-sm">
+                Contact Us
+              </Link>
             </li>
           </ul>
         </div>
         <div className="flex flex-col sm:flex-row-reverse  justify-between items-center border-t border-neutral_04-100 py-4">
           <div className="flex items-center gap-6">
-            <Link to={"https://www.instagram.com"}>
+            <Link target="_blank" to={"https://www.instagram.com/egzonbllacaa"}>
               <img className="max-w-5" alt="instagram" src={instagram} />
             </Link>
-            <Link to={"https://www.facebook.com"}>
+            <Link
+              target="_blank"
+              to={"https://www.facebook.com/profile.php?id=61574007328727"}
+            >
               <img className="max-w-5" alt="facebook" src={facebook} />
             </Link>
-            <Link to={"https://www.youtube.com"}>
+            <Link target="_blank" to={"https://www.youtube.com"}>
               <img className="max-w-5" alt="youtube" src={youtube} />
             </Link>
           </div>

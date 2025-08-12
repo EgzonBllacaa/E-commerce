@@ -16,13 +16,14 @@ const DetailsCard = () => {
   const previousPrice = product?.price + discountAmount;
   const formattedDiscount = discountAmount.toFixed(2);
 
+  if (!product) return <p>Loading...</p>;
   console.log(formattedDiscount);
   return (
-    <div className="flex items-center w-full gap-4 flex-wrap">
+    <div className="flex items-center justify-center  w-full gap-4 flex-wrap">
       <div className="w-1/2 min-w-[300px]">
         <img className="w-auto" src={product?.images[0]} alt="" />
       </div>
-      <div className="w-1/2 min-w-[300px]">
+      <div className="w-1/3 min-w-[300px]">
         <div className="flex flex-col gap-7">
           {/* Name of the product and some more info */}
           <div className="flex flex-col gap-2">
@@ -74,9 +75,11 @@ const DetailsCard = () => {
                   +
                 </span>
               </div>
-              <span className="text-teal-950 bg-teal-100 px-2 rounded-xl">
-                Currently in stock: {product.stock}
-              </span>
+              {product.stock && (
+                <span className="text-teal-950 bg-teal-100 px-2 rounded-xl">
+                  Currently in stock: {product.stock}
+                </span>
+              )}
             </div>
             <div className="flex gap-5 items-center">
               <button

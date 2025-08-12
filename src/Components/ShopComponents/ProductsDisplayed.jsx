@@ -3,8 +3,13 @@ import CardDetails from "../Shared/CardDetails";
 import { useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
 
-const ProductsDisplayed = ({ data, selectedCategories }) => {
-  console.log(data);
+const ProductsDisplayed = ({
+  filteredData,
+  selectedCategories,
+  setSelectedCategories,
+  setSelectedPriceRanges,
+  CATEGORIES_ALL,
+}) => {
   const [currentPage, setCurrentPage] = useState(0);
   const [itemsPerPage, setItemsPerPage] = useState(6);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -26,9 +31,13 @@ const ProductsDisplayed = ({ data, selectedCategories }) => {
     return () => window.removeEventListener("resize", handleResize);
   }, [windowWidth]);
 
-  const totalPages = Math.ceil(data.length / itemsPerPage);
+  const totalPages = Math.ceil(filteredData.length / itemsPerPage);
   const startIndex = currentPage * itemsPerPage;
-  const currentItems = data.slice(startIndex, startIndex + itemsPerPage);
+  const currentItems = filteredData.slice(
+    startIndex,
+    startIndex + itemsPerPage
+  );
+
   return (
     <>
       <div className="flex flex-col  w-full items-center gap-10">
@@ -37,6 +46,20 @@ const ProductsDisplayed = ({ data, selectedCategories }) => {
             selectedCategories.slice(1)}
         </h2>
         <div className="flex flex-wrap justify-center gap-6 items-center ">
+          {filteredData.length === 0 && (
+            <div className="flex flex-col justify-center mx-auto items-center">
+              <span>No such product was found with your requirements</span>
+              <button
+                className="hover:underline cursor-pointer"
+                onClick={() => {
+                  setSelectedCategories(CATEGORIES_ALL);
+                  setSelectedPriceRanges([]);
+                }}
+              >
+                Reset
+              </button>
+            </div>
+          )}
           {currentItems.map((product) => (
             <CardDetails product={product} />
           ))}

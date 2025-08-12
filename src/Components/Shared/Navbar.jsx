@@ -1,4 +1,11 @@
 import { useRef, useState } from "react";
+import {
+  SignedIn,
+  SignedOut,
+  SignInButton,
+  UserButton,
+} from "@clerk/clerk-react";
+
 import Cart from "../../assets/Cart.png";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import { faArrowDown } from "@fortawesome/free-solid-svg-icons";
@@ -23,7 +30,7 @@ const Navbar = () => {
   const { cart, addToCart, removeFromCart, resetCart, removeProduct } =
     useCartStore();
 
-  // total functions
+  // Total functions
   const totalProducts = cart.reduce(
     (sum, product) => sum + product.quantity,
     0
@@ -43,7 +50,6 @@ const Navbar = () => {
     const filtered = data.products.filter((product) =>
       product.title.toLowerCase().includes(searchValue.toLowerCase())
     );
-    console.log(filtered);
     setSearchedValue(filtered);
   };
 
@@ -80,8 +86,13 @@ const Navbar = () => {
                 className="border border-zinc-700 rounded py-1 pl-10"
                 type="text"
                 value={searchValue}
-                onChange={(e) => setSearchValue(e.target.value)}
-                onKeyDown={(e) => e.key === "Enter" && handleSearch()}
+                onChange={(e) => {
+                  setSearchValue(e.target.value);
+                  handleSearch();
+                }}
+                // onKeyDown={(e) => {
+                //   e.key === "Enter" && handleSearch();
+                // }}
               />
               <FontAwesomeIcon
                 icon={faSearch}
@@ -98,7 +109,7 @@ const Navbar = () => {
                       setHamburgerMenu(false);
                     }}
                   >
-                    <div className="flex text-white cursor-pointer bg-zinc-800 hover:bg-zinc-900 pr-2 w-[245px] items-center justify-between">
+                    <div className="flex  cursor-pointer bg-zinc-100 hover:bg-zinc-200 pr-2 w-[245px] items-center justify-between">
                       <img
                         src={results.images[0]}
                         className="max-w-16"
@@ -152,56 +163,7 @@ const Navbar = () => {
             <Link to={"/contact-us"}>Contact Us</Link>
           </li>
         </ul>
-        <div className="flex items-center relative sm:gap-2  xl:justify-self-end">
-          <div className="flex gap-4">
-            <img
-              onClick={() => setShowCart((prev) => !prev)}
-              className="min-w-5  cursor-pointer"
-              src={Cart}
-              alt=""
-            />
-            {showCart && cart.length > 0 && (
-              <div className="absolute bg-white flex flex-col justify-between overflow-y-auto top-10 right-0 px-4 z-30">
-                <div className="flex overflow-x-hidden justify-between items-center">
-                  <p className="text-zinc-500">{totalProducts} products</p>
-                  <button
-                    className="text-orange-600 cursor-pointer font-medium"
-                    onClick={resetCart}
-                  >
-                    Delete all
-                  </button>
-                </div>
-                <div className="h-[250px] w-[320px] overflow-y-auto">
-                  {cart.map((product) => (
-                    <SlideCart
-                      product={product}
-                      addToCart={addToCart}
-                      removeFromCart={removeFromCart}
-                      removeProduct={removeProduct}
-                      totalProducts={totalProducts}
-                      resetCart={resetCart}
-                    />
-                  ))}
-                </div>
-                <Link className="bg-white w-full py-2 " to={"/cart"}>
-                  <button
-                    onClick={() => setShowCart(false)}
-                    className="bg-amber-600 text-white w-full cursor-pointer hover:bg-amber-700 rounded-2xl font-medium py-3 "
-                  >
-                    Go to the Cart ${totalPrice.toFixed(2)}
-                  </button>
-                </Link>
-              </div>
-            )}
-            {totalProducts >= 1 && (
-              <span
-                onClick={() => setShowCart((prev) => !prev)}
-                className="bg-black text-white px-2 cursor-pointer  rounded-xl"
-              >
-                {totalProducts}
-              </span>
-            )}
-          </div>
+        <div className="flex items-center relative sm:gap-7 gap-4  xl:justify-self-end">
           <div className="relative">
             {showSearch && (
               <input
@@ -209,8 +171,10 @@ const Navbar = () => {
                 className="border border-zinc-700 rounded "
                 type="text"
                 value={searchValue}
-                onChange={(e) => setSearchValue(e.target.value)}
-                onKeyDown={(e) => e.key === "Enter" && handleSearch()}
+                onChange={(e) => {
+                  setSearchValue(e.target.value);
+                  handleSearch();
+                }}
               />
             )}
             {searchedValue.length > 0 &&
@@ -219,7 +183,7 @@ const Navbar = () => {
                 <div className="absolute top-7 max-h-[500px] overflow-hidden overflow-y-auto z-40  w-full">
                   {searchedValue.map((product) => (
                     <Link to={`/shop/${product.id}`}>
-                      <div className="flex text-white cursor-pointer bg-zinc-800 hover:bg-zinc-900  items-center justify-between">
+                      <div className="flex  cursor-pointer bg-zinc-100 hover:bg-zinc-200  items-center justify-between">
                         <img
                           src={product.images[0]}
                           className="max-w-16"
@@ -243,6 +207,66 @@ const Navbar = () => {
             src={Search}
             alt="search"
           />
+          {/* CLERK */}
+          <SignedOut>
+            <SignInButton mode="modal">
+              <button className="cursor-pointer transition-all bg-cyan-900 text-white px-5 py-1 rounded-lg   border-cyan-950 border-b-[4px] hover:brightness-110 hover:-translate-y-[1px]  active:border-b-[2px] active:brightness-90 active:translate-y-[2px] text-sm">
+                Sign In
+              </button>
+            </SignInButton>
+          </SignedOut>
+          <SignedIn>
+            <UserButton />
+          </SignedIn>
+          <div className="flex gap-4">
+            <img
+              onClick={() => setShowCart((prev) => !prev)}
+              className="min-w-5  cursor-pointer"
+              src={Cart}
+              alt=""
+            />
+            {showCart && cart.length > 0 && (
+              <div className="absolute bg-white flex flex-col justify-between overflow-y-auto top-10 right-0 px-4 z-30">
+                <div className="flex overflow-x-hidden justify-between items-center">
+                  <p className="text-zinc-500">{totalProducts} products</p>
+                  <button
+                    className="text-[#279463] cursor-pointer font-medium"
+                    onClick={resetCart}
+                  >
+                    Delete all
+                  </button>
+                </div>
+                <div className="h-[250px] w-[320px] sm:w-full overflow-y-auto">
+                  {cart.map((product) => (
+                    <SlideCart
+                      product={product}
+                      addToCart={addToCart}
+                      removeFromCart={removeFromCart}
+                      removeProduct={removeProduct}
+                      totalProducts={totalProducts}
+                      resetCart={resetCart}
+                    />
+                  ))}
+                </div>
+                <Link className="bg-white w-full py-2 " to={"/cart"}>
+                  <button
+                    onClick={() => setShowCart(false)}
+                    className="bg-[#279463] text-white w-full cursor-pointer hover:bg-[#14613e] rounded-2xl font-medium py-3 "
+                  >
+                    Go to the Cart ${totalPrice.toFixed(2)}
+                  </button>
+                </Link>
+              </div>
+            )}
+            {totalProducts >= 1 && (
+              <span
+                onClick={() => setShowCart((prev) => !prev)}
+                className=" text-white px-2 bg-[#279463] cursor-pointer  rounded-xl"
+              >
+                {totalProducts}
+              </span>
+            )}
+          </div>
         </div>
       </div>
     </Layout>

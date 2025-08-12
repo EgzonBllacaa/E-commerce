@@ -15,7 +15,7 @@ const CardCollection = ({ data }) => {
   console.log(currentItems);
   return (
     <Layout>
-      <h2 className="text-5xl font-medium mt-5 text-center">Posts</h2>
+      <h2 className="text-5xl font-medium mt-5 text-center">Articles</h2>
       <div className="py-10">
         <div className="flex flex-wrap gap-4 justify-center w-full py-10">
           {currentItems.map((post) => (

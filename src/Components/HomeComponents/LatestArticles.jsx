@@ -10,15 +10,17 @@ const LatestArticles = ({ posts }) => {
       <div className="flex flex-col gap-10 py-20">
         <div className="flex justify-between items-center">
           <h3 className="text-4xl font-medium">Latest Articles</h3>
-          <ReadMore className={`text-nowrap`} children={"View More"} />
+          <Link to={"/articles"}>
+            <ReadMore className={`text-nowrap`} children={"View More"} />
+          </Link>
         </div>
         <div>
-          <div className="flex gap-6 flex-wrap font-medium">
+          <div className="flex gap-14 justify-center flex-wrap font-medium">
             {posts.map((item) => (
-              <div className="flex flex-col gap-6">
+              <div className="flex flex-col gap-6  sm:max-w-[500px] md:max-w-[300px] lg:max-w-[440px]">
                 <Link to={`/articles/${item.id}`}>
                   <img
-                    className="md:max-w-[300px] xl:max-w-[460px]"
+                    className="w-full"
                     src={`https://picsum.photos/seed/${item.id}/600/400`}
                     alt=""
                   />

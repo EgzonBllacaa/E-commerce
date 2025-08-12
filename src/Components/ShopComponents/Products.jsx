@@ -21,10 +21,10 @@ const CATEGORIES = [
 
 const PRICE_RANGES = [
   { label: "All Price", min: 0, max: Infinity },
-  { label: "$0.00 - 9.99", min: 0.0, max: 9.99 },
-  { label: "$10.00 - 49.99", min: 10.0, max: 49.99 },
-  { label: "50.00 - 249.99", min: 200.0, max: 249.99 },
-  { label: "$250.00 - 500.00", min: 250.0, max: 500.0 },
+  { label: "$0.00 - $9.99", min: 0.0, max: 9.99 },
+  { label: "$10.00 - $49.99", min: 10.0, max: 49.99 },
+  { label: "$50.00 - $249.99", min: 50.0, max: 249.99 },
+  { label: "$250.00 - $500.00", min: 250.0, max: 500.0 },
   { label: "$400.00+", min: 300.0, max: Infinity },
 ];
 const Products = () => {
@@ -67,8 +67,8 @@ const Products = () => {
   if (isError) return <p>{error}</p>;
   return (
     <Layout className="pt-16 pb-24">
-      <div className="flex flex-col md:flex-row gap-6">
-        <div className="mx-auto w-full md:max-w-1/4">
+      <div className="flex flex-col md:flex-row  gap-10">
+        <div className="w-full md:max-w-1/4 ">
           <FilterSection
             CATEGORIES={CATEGORIES}
             selectedCategories={selectedCategories}
@@ -78,9 +78,14 @@ const Products = () => {
             setSelectedPriceRanges={setSelectedPriceRanges}
           />
         </div>
+
         <ProductsDisplayed
+          setSelectedCategories={setSelectedCategories}
+          setSelectedPriceRanges={setSelectedPriceRanges}
+          CATEGORIES_ALL={CATEGORIES_ALL}
           selectedCategories={selectedCategories}
-          data={filteredData}
+          filteredData={filteredData}
+          data={data}
         />
       </div>
     </Layout>
