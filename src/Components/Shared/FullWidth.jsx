@@ -1,6 +1,11 @@
+import ScrollToTop from "./ScrollToTop";
+
 const FullWidth = ({ children, className = "" }) => {
   return (
-    <div className={`relative w-full h-full ${className}`}>{children}</div>
+    <div className={`relative w-full h-full ${className}`}>
+      {children}
+      <ScrollToTop />
+    </div>
   );
 };
 
