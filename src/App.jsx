@@ -5,7 +5,7 @@ import Footer from "./Components/Shared/Footer";
 import Shop from "./Components/Pages/Shop";
 import ContactUs from "./Components/Pages/ContactUs";
 import Cart from "./Components/Pages/Cart";
-import ProductDetails from "./Components/Pages/CartDetails";
+import ProductDetails from "./Components/Pages/ProductDetail";
 import Categories from "./Components/Pages/Categories";
 import ArticlesDetails from "./Components/Pages/ArticlesDetails";
 import Articles from "./Components/Pages/Articles";
