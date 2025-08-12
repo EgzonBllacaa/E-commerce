@@ -1,3 +1,5 @@
+import ScrollToTop from "./ScrollToTop";
+
 const Layout = ({ children, className = "" }) => {
   return (
     <div className="px-4 sm:px-6 lg:px-8">
@@ -8,6 +10,7 @@ const Layout = ({ children, className = "" }) => {
         `}
       >
         {children}
+        <ScrollToTop />
       </div>
     </div>
   );
