@@ -9,7 +9,15 @@ import FullWidth from "../Shared/FullWidth";
 
 const ArticlesDetails = () => {
   const [readMore, setReadMore] = useState(false);
-  const imageUrl = `https://picsum.photos/1920/400?random&t=${Date.now()}`;
+  const { data: image } = useQuery({
+    queryKey: ["unsplashImage"],
+    queryFn: () =>
+      fetch(
+        `https://api.unsplash.com/photos/random?client_id=${
+          import.meta.env.VITE_UNSPLASH_ACCESS_KEY
+        }&query=article`
+      ).then((res) => res.json()),
+  });
   const { id } = useParams();
   const {
     data: post,
@@ -23,11 +31,16 @@ const ArticlesDetails = () => {
 
   if (isError) return console.log(error);
   if (isLoading) return <Loader />;
+  if (!image) return <Loader />;
   console.log(post);
   return (
     <div>
       <FullWidth>
-        <img src={imageUrl} className="w-full object-cover h-[305px]" alt="" />
+        <img
+          src={image.urls.regular}
+          className="w-full object-cover h-[305px]"
+          alt=""
+        />
       </FullWidth>
       <Layout className="xl:px-70 px-5 lg:px-30 sm:px-20 py-10">
         <div className="flex flex-wrap flex-col gap-20">
