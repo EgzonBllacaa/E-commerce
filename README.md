@@ -1,12 +1,34 @@
-# React + Vite
+# 🛒 E-Commerce Web App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A fully responsive e-commerce website built with modern web technologies, featuring product browsing, filtering, cart management, and secure authentication.
 
-Currently, two official plugins are available:
+## 📌 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Product API Integration** – Fetches real product data dynamically from https://dummyjson.com.
+- **Authentication with Clerk** – Secure sign-up, login, and session handling.
+- **Product Filtering**
+  - By **category**
+  - By **price**
+  - By **search query**
+- **Pagination** – Efficiently browse large product lists.
+- **Single Product Pages** – Detailed product descriptions with images.
+- **Add to Cart** – Add, remove, and update product quantities.
+- **Checkout System** – View total price and proceed to checkout.
+- **Articles Section** – Browse and read curated articles related to products.
+- **Responsive Design** – Optimized for mobile, tablet, and desktop.
 
-## Expanding the ESLint configuration
+## 🛠️ Tech Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **Frontend:** React, Tailwind CSS
+- **Authentication:** Clerk
+- **Data Fetching:** API integration with React Query / Fetch
+- **Routing:** React Router
+- **State Management:** Zustand (or your choice if different)
+- **Build Tool:** Vite
+
+## 🚀 Getting Started
+
+### 1️⃣ Clone the repository
+```bash
+git clone https://github.com/EgzonBllacaa/E-commerce
+cd E-commerce
