@@ -8,7 +8,7 @@ const CartProduct = ({ removeFromCart, addToCart, removeProduct, product }) => {
     <div className="flex justify-between border-b py-10 border-zinc-300 items-center">
       <div className="flex gap-3 items-center">
         <img
-          src={product.images[0]}
+          src={product.images[0] || "https://via.placeholder.com/150"}
           className="lg:w-32 w-full max-w-[64px] max-h-[64px] max-h-auto "
           alt=""
         />

@@ -16,6 +16,42 @@ const CartBill = ({ cart, couponCode }) => {
   } else {
     shippingFee = 0;
   }
+  console.log(cart);
+  const handleCheckout = async () => {
+    try {
+      const response = await fetch("/api/checkout", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          items: cart.map((item) => ({
+            price_data: {
+              currency: "eur",
+              product_data: {
+                name: item.title || item.name,
+                // images: [item.images?.[0] || item.image],
+                description: item.description,
+              },
+              unit_amount: item.price, // Convert to cents and ensure it's an integer
+            },
+            quantity: item.quantity,
+          })),
+        }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || "Checkout failed");
+      }
+
+      const { url } = await response.json();
+      window.location.href = url;
+    } catch (error) {
+      console.error("Checkout error:", error);
+      alert("Failed to initiate checkout. Please try again.");
+    }
+  };
 
   const discountAmount = couponCode
     ? (baseTotal + shippingFee) * couponCode
@@ -86,7 +122,10 @@ const CartBill = ({ cart, couponCode }) => {
           </div>
         </div>
       </div>
-      <button className="bg-black text-white cursor-pointer w-full text-lg py-2.5 rounded-lg py">
+      <button
+        onClick={handleCheckout}
+        className="bg-black text-white cursor-pointer w-full text-lg py-2.5 rounded-lg py"
+      >
         Checkout
       </button>
     </div>
