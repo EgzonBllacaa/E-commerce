@@ -33,7 +33,7 @@ const DetailsCard = () => {
     ];
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_BACKEND_URL}/api/checkout`,
+        `https://backend-stripe-otal.onrender.com/api/checkout`,
         {
           method: "POST",
           headers: {
