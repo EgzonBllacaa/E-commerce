@@ -9,6 +9,8 @@ import ProductDetails from "./Components/Pages/ProductDetail";
 import Categories from "./Components/Pages/Categories";
 import ArticlesDetails from "./Components/Pages/ArticlesDetails";
 import Articles from "./Components/Pages/Articles";
+import SuccessPage from "./Components/Shared/SucessPage";
+import CancelPage from "./Components/Shared/CancelPage";
 
 const App = () => {
   return (
@@ -24,6 +26,8 @@ const App = () => {
           <Route path="/cart" element={<Cart />} />
           <Route path="/shop/:id" element={<ProductDetails />} />
           <Route path="/categories/:name" element={<Categories />} />
+          <Route path="/success" element={<SuccessPage />} />
+          <Route path="/cancel" element={<CancelPage />} />
         </Routes>
         <Footer />
       </Router>

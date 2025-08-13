@@ -1,3 +1,4 @@
+// import { useEffect } from "react";
 import { useState } from "react";
 
 const CartBill = ({ cart, couponCode }) => {
@@ -16,43 +17,41 @@ const CartBill = ({ cart, couponCode }) => {
   } else {
     shippingFee = 0;
   }
+  // useEffect(() => {
+  //   handleCheckout();
+  // }, []);
   console.log(cart);
   const handleCheckout = async () => {
+    const items = cart.map((product) => ({
+      price_data: {
+        currency: "usd",
+        product_data: {
+          name: product.title,
+        },
+        unit_amount: Math.round(Number(product.price * 100)), // Convert to cents
+      },
+      quantity: product.quantity,
+    }));
+
     try {
-      const response = await fetch("/api/checkout", {
+      const response = await fetch("http://localhost:3000/api/checkout", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          items: cart.map((item) => ({
-            price_data: {
-              currency: "eur",
-              product_data: {
-                name: item.title || item.name,
-                // images: [item.images?.[0] || item.image],
-                description: item.description,
-              },
-              unit_amount: item.price, // Convert to cents and ensure it's an integer
-            },
-            quantity: item.quantity,
-          })),
-        }),
+        body: JSON.stringify({ items }),
       });
 
       if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || "Checkout failed");
+        throw new Error("Failed to create checkout session");
       }
 
-      const { url } = await response.json();
-      window.location.href = url;
+      const session = await response.json();
+      window.location.href = session.url; // Redirect to Stripe checkout
     } catch (error) {
       console.error("Checkout error:", error);
-      alert("Failed to initiate checkout. Please try again.");
     }
   };
-
   const discountAmount = couponCode
     ? (baseTotal + shippingFee) * couponCode
     : 0;

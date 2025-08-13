@@ -16,6 +16,41 @@ const DetailsCard = () => {
   const previousPrice = product?.price + discountAmount;
   const formattedDiscount = discountAmount.toFixed(2);
 
+  const handleCheckout = async () => {
+    if (!product) return;
+
+    const items = [
+      {
+        price_data: {
+          currency: "eur",
+          product_data: {
+            name: product.title,
+          },
+          unit_amount: Math.round(Number(product.price * 100)), // Convert to cents
+        },
+        quantity: 1, // Default to 1 if not in cart
+      },
+    ];
+    try {
+      const response = await fetch("http://localhost:3000/api/checkout", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ items }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to create checkout session");
+      }
+
+      const session = await response.json();
+      window.location.href = session.url; // Redirect to Stripe checkout
+    } catch (error) {
+      console.error("Checkout error:", error);
+    }
+  };
+
   if (!product) return <p>Loading...</p>;
   console.log(formattedDiscount);
   return (
@@ -83,13 +118,13 @@ const DetailsCard = () => {
             </div>
             <div className="flex gap-5 items-center">
               <button
-                onClick={addToCart}
+                onClick={handleCheckout}
                 className="bg-accent hover:bg-teal-900 hover:text-white cursor-pointer w-full py-3 rounded-3xl"
               >
                 Buy now
               </button>
               <button
-                onClick={addToCart}
+                onClick={() => addToCart(product)}
                 className="border w-full py-3 rounded-3xl border-zinc-200 hover:border-zinc-500 cursor-pointer"
               >
                 Add To Cart
