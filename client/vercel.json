@@ -1,16 +1,8 @@
 {
-  "rewrites": [
-    {
-      "source": "/api/(.*)",
-      "destination": "/api/$1"
-    },
-    {
-      "source": "/(.*)",
-      "destination": "/index.html"
-    }
-  ],
-  "env": {
-    "STRIPE_SECRET_KEY": "@stripe_secret_key",
-    "URL": "@url"
-  }
+  "version": 2,
+  "builds": [{ "src": "client/package.json", "use": "@vercel/static-build" }],
+  "routes": [
+    { "handle": "filesystem" },
+    { "src": "/.*", "dest": "client/index.html" }
+  ]
 }
