@@ -34,13 +34,16 @@ const CartBill = ({ cart, couponCode }) => {
     }));
 
     try {
-      const response = await fetch("http://localhost:3000/api/checkout", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ items }),
-      });
+      const response = await fetch(
+        `${import.meta.env.VITE_BACKEND_URL}/api/checkout`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ items }),
+        }
+      );
 
       if (!response.ok) {
         throw new Error("Failed to create checkout session");
