@@ -1,8 +1,10 @@
 // import { useEffect } from "react";
 import { useState } from "react";
+import Loader from "../Shared/Loader";
 
 const CartBill = ({ cart, couponCode }) => {
   const [shippingType, setShippingType] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   const baseTotal = cart.reduce(
     (sum, product) => sum + product.quantity * product.price,
@@ -32,8 +34,8 @@ const CartBill = ({ cart, couponCode }) => {
       },
       quantity: product.quantity,
     }));
-
     try {
+      setLoading(true);
       const response = await fetch(
         `https://backend-stripe-otal.onrender.com/api/checkout`,
         {
@@ -51,8 +53,10 @@ const CartBill = ({ cart, couponCode }) => {
 
       const session = await response.json();
       window.location.href = session.url; // Redirect to Stripe checkout
+      setLoading(false);
     } catch (error) {
       console.error("Checkout error:", error);
+      setLoading(false);
     }
   };
   const discountAmount = couponCode
@@ -61,75 +65,86 @@ const CartBill = ({ cart, couponCode }) => {
   const finalTotal = baseTotal + shippingFee - discountAmount;
 
   return (
-    <div className="xl:w-[30%] min-w-[200px]  w-full border rounded-xl px-6 py-6">
-      <h4 className="font-bold text-lg">Cart Summary</h4>
-      <div className="flex flex-col gap-4 pt-4 pb-8">
-        <div className="flex flex-col gap-4">
-          <div className="flex justify-between  px-4 py-3 border rounded  items-center w-full">
-            <div className="flex items-center gap-3">
-              <input
-                type="radio"
-                className=""
-                value={"none"}
-                checked={shippingType === null}
-                onChange={() => {
-                  setShippingType(null);
-                }}
-              />
-              <label htmlFor="">Free shipping</label>
+    <div className="relative">
+      {loading && (
+        <div className="fixed inset-0 top-2/4">
+          <Loader />
+        </div>
+      )}
+      <div className="xl:w-[30%] min-w-[200px]  w-full border rounded-xl px-6 py-6">
+        <h4 className="font-bold text-lg">Cart Summary</h4>
+        <div className="flex flex-col gap-4 pt-4 pb-8">
+          <div className="flex flex-col gap-4">
+            <div className="flex justify-between  px-4 py-3 border rounded  items-center w-full">
+              <div className="flex items-center gap-3">
+                <input
+                  type="radio"
+                  className=""
+                  value={"none"}
+                  checked={shippingType === null}
+                  onChange={() => {
+                    setShippingType(null);
+                  }}
+                />
+                <label htmlFor="">Free shipping</label>
+              </div>
+              <span>$0.00</span>
             </div>
-            <span>$0.00</span>
+            <div className="flex justify-between  px-4 py-3 border rounded   items-center w-full">
+              <div className="flex items-center gap-3">
+                <input
+                  type="radio"
+                  value={"flat"}
+                  checked={shippingType === "flat"}
+                  onChange={() => {
+                    setShippingType((prev) =>
+                      prev === "flat" ? null : "flat"
+                    );
+                  }}
+                />
+                <label htmlFor="">Express shipping</label>
+              </div>
+              <span>+$15.00</span>
+            </div>
+            <div className="flex justify-between  px-4 py-3 border rounded   items-center w-full">
+              <div className="flex items-center gap-3">
+                <input
+                  type="radio"
+                  value={"percent"}
+                  checked={shippingType === "percent"}
+                  onChange={() => {
+                    setShippingType((prev) =>
+                      prev === "percent" ? null : "percent"
+                    );
+                  }}
+                />
+                <label htmlFor="">Pick Up</label>
+              </div>
+              <span>21.00%</span>
+            </div>
           </div>
-          <div className="flex justify-between  px-4 py-3 border rounded   items-center w-full">
-            <div className="flex items-center gap-3">
-              <input
-                type="radio"
-                value={"flat"}
-                checked={shippingType === "flat"}
-                onChange={() => {
-                  setShippingType((prev) => (prev === "flat" ? null : "flat"));
-                }}
-              />
-              <label htmlFor="">Express shipping</label>
+          <div className="flex flex-col">
+            <div className="flex justify-between items-center py-3 border-b border-zinc-400">
+              <span className="text-lg">SubTotal</span>
+              <span className="font-medium text-lg">
+                ${baseTotal.toFixed(2)}
+              </span>
             </div>
-            <span>+$15.00</span>
-          </div>
-          <div className="flex justify-between  px-4 py-3 border rounded   items-center w-full">
-            <div className="flex items-center gap-3">
-              <input
-                type="radio"
-                value={"percent"}
-                checked={shippingType === "percent"}
-                onChange={() => {
-                  setShippingType((prev) =>
-                    prev === "percent" ? null : "percent"
-                  );
-                }}
-              />
-              <label htmlFor="">Pick Up</label>
+            <div className="flex justify-between py-3 items-center">
+              <span className="text-lg font-bold ">Total</span>
+              <span className="font-medium text-lg">
+                ${finalTotal.toFixed(2)}
+              </span>
             </div>
-            <span>21.00%</span>
           </div>
         </div>
-        <div className="flex flex-col">
-          <div className="flex justify-between items-center py-3 border-b border-zinc-400">
-            <span className="text-lg">SubTotal</span>
-            <span className="font-medium text-lg">${baseTotal.toFixed(2)}</span>
-          </div>
-          <div className="flex justify-between py-3 items-center">
-            <span className="text-lg font-bold ">Total</span>
-            <span className="font-medium text-lg">
-              ${finalTotal.toFixed(2)}
-            </span>
-          </div>
-        </div>
+        <button
+          onClick={handleCheckout}
+          className="bg-black text-white cursor-pointer w-full text-lg py-2.5 rounded-lg py"
+        >
+          Checkout
+        </button>
       </div>
-      <button
-        onClick={handleCheckout}
-        className="bg-black text-white cursor-pointer w-full text-lg py-2.5 rounded-lg py"
-      >
-        Checkout
-      </button>
     </div>
   );
 };
