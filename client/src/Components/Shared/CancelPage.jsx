@@ -3,9 +3,11 @@ import { Link } from "react-router-dom";
 
 const CancelPage = () => {
   return (
-    <div>
-      <h2>Sorry the payment got cancelled</h2>
-      <Link to={"/shop"}>Go back to shop</Link>
+    <div className="min-h-screen flex flex-col gap-4 justify-center items-center">
+      <h2 className="text-4xl font-medium ">Sorry the payment got cancelled</h2>
+      <Link to={"/shop"} className="hover:underline">
+        Go back to shop
+      </Link>
     </div>
   );
 };
