@@ -4,7 +4,7 @@ import Loader from "../Shared/Loader";
 
 const CartBill = ({ cart, couponCode }) => {
   const [shippingType, setShippingType] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const baseTotal = cart.reduce(
     (sum, product) => sum + product.quantity * product.price,
@@ -65,13 +65,13 @@ const CartBill = ({ cart, couponCode }) => {
   const finalTotal = baseTotal + shippingFee - discountAmount;
 
   return (
-    <div className="relative">
+    <div className="relative xl:w-[30%] min-w-[200px] w-full">
       {loading && (
-        <div className="fixed inset-0 top-2/4">
+        <div className="fixed left-2/4 top-2/4">
           <Loader />
         </div>
       )}
-      <div className="xl:w-[30%] min-w-[200px]  w-full border rounded-xl px-6 py-6">
+      <div className="   border rounded-xl px-6 py-6">
         <h4 className="font-bold text-lg">Cart Summary</h4>
         <div className="flex flex-col gap-4 pt-4 pb-8">
           <div className="flex flex-col gap-4">
